@@ -1,6 +1,42 @@
 from tkinter import *
 from tkinter import messagebox as box
 
+def auth():
+    global username
+    global password
+    global master
+    username = username.get()
+    password = password.get()
+    master.destroy()
+    found = False
+    loginsfile = open('data/logins.csv')
+    for each line in loginsfile:
+        data = line.split(',')
+        if username = data[0] and password = data[1]:
+            userinfo = [data[0],data[2]]
+            box.showinfo('Logged In','You have now been logged into: ' + userinfo[0])
+            return userinfo
+    if found = False:
+        box.showerror('401', 'Username and/or Password incorrect')
+        raise loginerror
+def login():
+    global username
+    global password
+    global master
+    master = Tk()
+    Label(master, text="Username:").grid(row=0, padx = 8, pady = 1)
+    Label(master, text="Password:").grid(row=1, padx = 8, pady = 1)
+    master.title('Login')
+    username = tkinter.Entry(master)
+
+    username.grid(row=0, column=1)
+
+    password = tkinter.Entry(master,show='*')
+
+    password.grid(row=1, column=1)
+
+    tkinter.Button(master, text='login', command=auth).grid(row=3, column=2, sticky=tkinter.W, pady=1,padx =  8)
+    master.mainloop( )
 
 def lockallforreset():
     global listbox
@@ -50,21 +86,30 @@ def appmanage():
         return
     print(option)
     if str(option) == 'Reset':
-        locked = listbox.after(10,lockallforreset)
-        while locked == False:
-            print('')
-        wiped = listbox.after(2500,filewipe)
-        while wiped == False:
-            print('')
-        recovered = listbox.after(2600,recoverall)
-        while recovered == False:
-            print('')
-        return
+        user['null','null','dummy']
+        try:
+            user = login()
+         except loginerror:
+            continue
+        if user[1] = 'admin':
+            locked = listbox.after(10,lockallforreset)
+            while locked == False:
+                print('')
+            wiped = listbox.after(2500,filewipe)
+            while wiped == False:
+                print('')
+            recovered = listbox.after(2600,recoverall)
+            while recovered == False:
+                print('')
+            return
+        else:
+            box.showerror('401 Disallowed', 'Your account can not perform this action')
+            return
     elif str(option) == 'Add Accounts':
         box.showinfo('Instructions', "Open logins.csv in the data folder and add a newline in the format 'username,password,'.")
 
     else:
-        box.showinfo('ERR1', 'This function is not available')
+        box.showinfo('ERR1', 'This function is not available.')
         
 def menu():
     global listbox

@@ -15,6 +15,10 @@ def auth():
         if username = data[0] and password = data[1]:
             userinfo = [data[0],data[2]]
             box.showinfo('Logged In','You have now been logged into: ' + userinfo[0])
+            return userinfo
+    if found = False:
+        box.showerror('401', 'Username and/or Password incorrect')
+        raise loginerror
 def login():
     global username
     global password
@@ -82,7 +86,11 @@ def appmanage():
         return
     print(option)
     if str(option) == 'Reset':
-        user = login()
+        user['null','null','dummy']
+        try:
+            user = login()
+         except loginerror:
+            continue
         if user[1] = 'admin':
             locked = listbox.after(10,lockallforreset)
             while locked == False:

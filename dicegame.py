@@ -94,11 +94,14 @@ def appmanage():
             while recovered == False:
                 print('')
             return
+        else:
+            box.showerror('401 Disallowed', 'Your account can not perform this action')
+            return
     elif str(option) == 'Add Accounts':
         box.showinfo('Instructions', "Open logins.csv in the data folder and add a newline in the format 'username,password,'.")
 
     else:
-        box.showinfo('ERR1', 'This function is not available')
+        box.showinfo('ERR1', 'This function is not available.')
         
 def menu():
     global listbox

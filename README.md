@@ -7,3 +7,5 @@ A DiceGame built in python.
 This will completely wipe the score list and delete all logins. To erase just one, delete the file from data/
 
 You can remove an entry from either file by editing the file directly and deleting the correct line.
+
+After erasing data, the wizard will allow you to create a new admin account

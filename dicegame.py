@@ -50,16 +50,18 @@ def appmanage():
         return
     print(option)
     if str(option) == 'Reset':
-        locked = listbox.after(10,lockallforreset)
-        while locked == False:
-            print('')
-        wiped = listbox.after(2500,filewipe)
-        while wiped == False:
-            print('')
-        recovered = listbox.after(2600,recoverall)
-        while recovered == False:
-            print('')
-        return
+        user = login()
+        if user[2] = 'admin':
+            locked = listbox.after(10,lockallforreset)
+            while locked == False:
+                print('')
+            wiped = listbox.after(2500,filewipe)
+            while wiped == False:
+                print('')
+            recovered = listbox.after(2600,recoverall)
+            while recovered == False:
+                print('')
+            return
     elif str(option) == 'Add Accounts':
         box.showinfo('Instructions', "Open logins.csv in the data folder and add a newline in the format 'username,password,'.")
 

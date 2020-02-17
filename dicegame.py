@@ -1,6 +1,38 @@
 from tkinter import *
 from tkinter import messagebox as box
 
+def auth():
+    global username
+    global password
+    global master
+    username = username.get()
+    password = password.get()
+    master.destroy()
+    found = False
+    loginsfile = open('data/logins.csv')
+    for each line in loginsfile:
+        data = line.split(',')
+        if username = data[0] and password = data[1]:
+            userinfo = [data[0],data[2]]
+            box.showinfo('Logged In','You have now been logged into: ' + userinfo[0])
+def login():
+    global username
+    global password
+    global master
+    master = Tk()
+    Label(master, text="Username:").grid(row=0, padx = 8, pady = 1)
+    Label(master, text="Password:").grid(row=1, padx = 8, pady = 1)
+    master.title('Login')
+    username = tkinter.Entry(master)
+
+    username.grid(row=0, column=1)
+
+    password = tkinter.Entry(master,show='*')
+
+    password.grid(row=1, column=1)
+
+    tkinter.Button(master, text='login', command=auth).grid(row=3, column=2, sticky=tkinter.W, pady=1,padx =  8)
+    master.mainloop( )
 
 def lockallforreset():
     global listbox
@@ -51,7 +83,7 @@ def appmanage():
     print(option)
     if str(option) == 'Reset':
         user = login()
-        if user[2] = 'admin':
+        if user[1] = 'admin':
             locked = listbox.after(10,lockallforreset)
             while locked == False:
                 print('')
